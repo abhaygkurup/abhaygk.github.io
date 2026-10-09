@@ -13,6 +13,9 @@
   --accent: #1d6a50;
   --accent-soft: #e2efe9;
   --neg: #a2412f;
+  --s-zomato: #0f7a55;
+  --s-paytm: #2f5fb3;
+  --s-nykaa: #b0477a;
   --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
   --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
@@ -27,12 +30,14 @@
   :root:not([data-theme="light"]) {
     --bg: #0d1412; --surface: #141d1a; --fg: #e4ece8; --muted: #93a49c;
     --rule: #26342f; --accent: #5cc39b; --accent-soft: #173229; --neg: #e08a74;
+    --s-zomato: #36a079; --s-paytm: #6690dc; --s-nykaa: #d06b9a;
     color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --bg: #0d1412; --surface: #141d1a; --fg: #e4ece8; --muted: #93a49c;
   --rule: #26342f; --accent: #5cc39b; --accent-soft: #173229; --neg: #e08a74;
+    --s-zomato: #36a079; --s-paytm: #6690dc; --s-nykaa: #d06b9a;
   color-scheme: dark;
 }
 
@@ -77,7 +82,7 @@ section { padding-block: clamp(3rem, 7vw, 5rem); border-bottom: 1px solid var(--
 
 /* Hero */
 .hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
-@media (max-width: 880px) { .hero { grid-template-columns: 1fr; } }
+@media (max-width: 880px) { .hero { grid-template-columns: minmax(0, 1fr); } }
 .hero-id { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
 .hero-id img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--rule); }
 .hero-id strong { display: block; font-family: var(--font-display); font-stretch: 110%; font-size: 1.05rem; }
@@ -107,15 +112,15 @@ tr:last-child td { border-bottom: 0; }
 .pack-foot { padding: .7rem 1.1rem; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--rule); background: var(--bg); }
 
 /* Case studies */
-.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
-@media (max-width: 880px) { .cases { grid-template-columns: 1fr; } }
+.cases { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; }
+@media (max-width: 1040px) { .cases { grid-template-columns: minmax(0, 1fr); } }
 .case { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; display: flex; flex-direction: column; min-width: 0; }
 .case-top { padding: 1.25rem 1.25rem 0; display: grid; gap: .4rem; }
 .case dl { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: .55rem 1rem; margin: 1rem 1.25rem 1.25rem; font-size: .93rem; }
 .case dt { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: .2rem; }
 .case dd { margin: 0; }
 .case dd.result { font-weight: 600; }
-@media (max-width: 460px) { .case dl { grid-template-columns: 1fr; gap: .15rem; } .case dd { margin-bottom: .5rem; } }
+@media (max-width: 460px) { .case dl { grid-template-columns: minmax(0, 1fr); gap: .15rem; } .case dd { margin-bottom: .5rem; } }
 .tags { display: flex; flex-wrap: wrap; gap: .35rem; }
 .tag { font-family: var(--font-mono); font-size: .72rem; padding: .15rem .5rem; border-radius: 3px; background: var(--accent-soft); color: var(--fg); }
 .demo { margin-top: auto; border-top: 1px dashed var(--rule); padding: 1rem 1.25rem 1.25rem; background: var(--bg); border-radius: 0 0 8px 8px; }
@@ -134,10 +139,59 @@ pre.log .c { color: var(--muted); }
 .chart .bar.alt { fill: var(--rule); }
 .chart .grid { stroke: var(--rule); stroke-width: 1; }
 
+/* Thesis */
+.thesis-meta { display: flex; flex-wrap: wrap; gap: .4rem 1.25rem; font-size: .85rem; color: var(--muted); margin-top: .25rem; }
+.findings { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-bottom: 2.25rem; }
+@media (max-width: 860px) { .findings { grid-template-columns: minmax(0, 1fr); } }
+.finding { border-top: 2px solid var(--fg); padding-top: .9rem; display: grid; gap: .35rem; align-content: start; }
+.finding .big { font-family: var(--font-display); font-stretch: 112%; font-weight: 750; font-size: 2rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.finding p { font-size: .93rem; color: var(--muted); }
+.finding p strong { color: var(--fg); font-weight: 600; }
+.charts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+@media (max-width: 960px) { .charts { grid-template-columns: minmax(0, 1fr); } }
+.figure { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1.1rem 1.1rem .9rem; min-width: 0; display: grid; gap: .6rem; align-content: start; }
+.figure h3 { font-size: 1rem; }
+.figure .sub { font-size: .82rem; color: var(--muted); }
+.figure svg { display: block; width: 100%; height: auto; overflow: visible; }
+.figure svg text { font-family: var(--font-mono); font-size: 11px; fill: var(--muted); }
+.figure svg text.lbl { fill: var(--fg); font-size: 11.5px; }
+.figure .grid { stroke: var(--rule); stroke-width: 1; }
+.figure .zero { stroke: var(--muted); stroke-width: 1; }
+.figure .fit { stroke: var(--muted); stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+.figure .ln { fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.figure .dot { stroke: var(--surface); stroke-width: 2; }
+.figure .bub { fill-opacity: .85; stroke: var(--surface); stroke-width: 2; }
+.figure .hit { fill: transparent; cursor: default; }
+.z { stroke: var(--s-zomato); fill: var(--s-zomato); }
+.p { stroke: var(--s-paytm); fill: var(--s-paytm); }
+.n { stroke: var(--s-nykaa); fill: var(--s-nykaa); }
+.ln.z, .ln.p, .ln.n { fill: none; }
+.legend { display: flex; flex-wrap: wrap; gap: .4rem 1rem; font-size: .8rem; color: var(--muted); }
+.legend span { display: inline-flex; align-items: center; gap: .4rem; }
+.legend i { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+.legend i.z { background: var(--s-zomato); } .legend i.p { background: var(--s-paytm); } .legend i.n { background: var(--s-nykaa); }
+.scorecard { margin-top: 1.25rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; }
+.scorecard table { font-size: .86rem; min-width: 46rem; }
+.scorecard td.neg { color: var(--neg); }
+.scorecard td { white-space: nowrap; }
+.scorecard tbody th { font-family: var(--font-body); font-size: .9rem; text-transform: none; letter-spacing: 0; color: var(--fg); font-weight: 600; white-space: nowrap; }
+.scorecard tbody th i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; margin-right: .45rem; }
+.scorecard tbody th i.z { background: var(--s-zomato); } .scorecard tbody th i.p { background: var(--s-paytm); } .scorecard tbody th i.n { background: var(--s-nykaa); }
+.scorecard caption { caption-side: bottom; text-align: left; padding: .7rem 1.1rem; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--rule); }
+.method { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 1.5rem; margin-top: 2.25rem; align-items: start; }
+@media (max-width: 960px) { .method { grid-template-columns: minmax(0, 1fr); } }
+.method .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 560px) { .method .steps { grid-template-columns: minmax(0, 1fr); } }
+.method h3 { font-size: 1rem; margin-bottom: .75rem; }
+.method .steps li code { font-family: var(--font-mono); font-size: .76rem; color: var(--accent); }
+.relevance { margin-top: 1.25rem; padding: 1rem 1.1rem; background: var(--accent-soft); border-radius: 8px; font-size: .93rem; }
+.relevance strong { display: block; margin-bottom: .25rem; }
+.caveat { margin-top: 1rem; font-size: .82rem; color: var(--muted); max-width: 52rem; }
+
 /* Transformation lens */
 .lanes { display: grid; gap: 1.5rem; }
 .lane { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; align-items: start; }
-@media (max-width: 700px) { .lane { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .lane { grid-template-columns: minmax(0, 1fr); } }
 .lane-name h3 { font-size: 1rem; }
 .lane-name p { font-size: .82rem; color: var(--muted); }
 .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; counter-reset: s; }
@@ -149,7 +203,7 @@ pre.log .c { color: var(--muted); }
 .lane.future .steps li small { color: var(--accent); }
 .lane.today .steps li small { color: var(--neg); }
 .principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--rule); }
-@media (max-width: 760px) { .principles { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .principles { grid-template-columns: minmax(0, 1fr); } }
 .principles h3 { font-size: 1rem; margin-bottom: .3rem; }
 .principles p { color: var(--muted); font-size: .93rem; }
 
@@ -157,7 +211,7 @@ pre.log .c { color: var(--muted); }
 .timeline { display: grid; gap: 0; }
 .job { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.4rem; border-top: 1px solid var(--rule); }
 .job:first-child { border-top: 2px solid var(--fg); }
-@media (max-width: 700px) { .job { grid-template-columns: 1fr; gap: .4rem; } }
+@media (max-width: 700px) { .job { grid-template-columns: minmax(0, 1fr); gap: .4rem; } }
 .job .when { font-family: var(--font-mono); font-size: .82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
 .job h3 { font-size: 1.05rem; }
 .job .org { color: var(--muted); font-size: .92rem; margin-top: .15rem; }
@@ -166,12 +220,12 @@ pre.log .c { color: var(--muted); }
 /* Skills */
 .skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
 @media (max-width: 960px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .skills { grid-template-columns: 1fr; } }
+@media (max-width: 520px) { .skills { grid-template-columns: minmax(0, 1fr); } }
 .skill-group h3 { font-size: .95rem; padding-bottom: .5rem; border-bottom: 2px solid var(--fg); margin-bottom: .6rem; }
 .skill-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; font-size: .93rem; }
 
 .facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
-@media (max-width: 860px) { .facts { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .facts { grid-template-columns: minmax(0, 1fr); } }
 .fact h3 { font-size: .95rem; padding-bottom: .5rem; border-bottom: 2px solid var(--fg); margin-bottom: .75rem; }
 .fact .item { padding-bottom: .75rem; margin-bottom: .75rem; border-bottom: 1px solid var(--rule); font-size: .93rem; }
 .fact .item:last-child { border-bottom: 0; }
@@ -179,7 +233,7 @@ pre.log .c { color: var(--muted); }
 
 /* Contact */
 .contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2rem; align-items: center; }
-@media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+@media (max-width: 760px) { .contact { grid-template-columns: minmax(0, 1fr); } }
 .contact h2 { font-size: var(--step-3); font-stretch: 118%; font-weight: 780; letter-spacing: -.02em; }
 .contact-box { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1.25rem; display: grid; gap: .9rem; }
 .row { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; }
@@ -193,6 +247,7 @@ footer { padding-block: 2rem 3rem; font-size: .8rem; color: var(--muted); displa
     <a class="brand" href="#top">Abhay G. Kurup</a>
     <ul>
       <li><a href="#cases">Case studies</a></li>
+      <li><a href="#thesis">Thesis</a></li>
       <li><a href="#transformation">Transformation</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#skills">Skills</a></li>
@@ -247,7 +302,7 @@ footer { padding-block: 2rem 3rem; font-size: .8rem; color: var(--muted); displa
   <section id="cases" aria-labelledby="cases-title">
     <div class="section-head">
       <p class="eyebrow">Case studies</p>
-      <h2 id="cases-title">Four problems, how I solved them, and what changed</h2>
+      <h2 id="cases-title">Controlling problems I solved, and what changed</h2>
       <p>Each demo below is rebuilt with synthetic sample data. No employer data is shown.</p>
     </div>
 
@@ -336,28 +391,167 @@ footer { padding-block: 2rem 3rem; font-size: .8rem; color: var(--muted); displa
         </div>
       </article>
 
-      <article class="case">
-        <div class="case-top">
-          <p class="eyebrow">Master thesis · HfWU Nürtingen</p>
-          <h3>IPO valuation of Indian consumer-tech unicorns</h3>
-          <div class="tags"><span class="tag">Python</span><span class="tag">DCF</span><span class="tag">Multiples</span><span class="tag">Event study</span></div>
-        </div>
-        <dl>
-          <dt>Problem</dt><dd>Did post-IPO performance of Indian consumer-tech companies justify their listing valuations?</dd>
-          <dt>Approach</dt><dd>Built Python models for DCF valuation, comparable-company multiples and an event study against sector peers.</dd>
-          <dt>Result</dt><dd class="result">A reusable modelling pipeline for benchmarking valuations and forecasts.</dd>
-        </dl>
-        <div class="demo">
-          <div class="demo-label"><span>Demo · model excerpt</span><span>code on GitHub</span></div>
-<pre class="log"><span class="c"># dcf.py — enterprise value from free cash flows</span>
-def enterprise_value(fcf, wacc, g):
-    pv = sum(cf / (1 + wacc)**t
-             for t, cf in enumerate(fcf, 1))
-    tv = fcf[-1] * (1 + g) / (wacc - g)
-    return pv + tv / (1 + wacc)**len(fcf)</pre>
-        </div>
-      </article>
     </div>
+  </section>
+
+  <section id="thesis" aria-labelledby="thesis-title">
+    <div class="section-head">
+      <p class="eyebrow">Featured project · Master thesis</p>
+      <h2 id="thesis-title">IPO performance of Indian consumer-tech unicorns</h2>
+      <p>Did Zomato, Nykaa and Paytm deliver for investors after listing? I built a reproducible Python workflow to measure first-day pricing, market-adjusted returns over three years, and what drove the differences.</p>
+      <div class="thesis-meta">
+        <span>HfWU Nürtingen · submitted February 2026</span>
+        <span>Event study · OLS regression</span>
+        <span>Python · pandas · yfinance · statsmodels</span>
+      </div>
+    </div>
+
+    <div class="findings">
+      <div class="finding">
+        <span class="eyebrow">Day one</span>
+        <span class="big num">+1.28 pp</span>
+        <p><strong>Investor demand predicted the first-day return.</strong> Each extra subscription multiple came with about 1.28 percentage points more first-day gain (R² 0.80).</p>
+      </div>
+      <div class="finding">
+        <span class="eyebrow">Year one</span>
+        <span class="big num">−67% to −127%</span>
+        <p><strong>All three fell far behind the NIFTY 50.</strong> The listings came at the 2021 peak in tech valuations, just before the 2022 correction.</p>
+      </div>
+      <div class="finding">
+        <span class="eyebrow">Year three</span>
+        <span class="big num">+31.8%</span>
+        <p><strong>Execution decided the long run.</strong> Zomato recovered above the market, while Nykaa (−106.2%) and Paytm (−80.5%) stayed deeply negative.</p>
+      </div>
+    </div>
+
+    <div class="charts">
+      <figure class="figure" style="margin:0">
+        <h3>Cumulative abnormal return vs. NIFTY 50</h3>
+        <p class="sub">CAR in %, by trading days after listing. Horizons are evenly spaced, not to scale.</p>
+        <svg viewBox="0 0 560 292" role="img" aria-labelledby="car-desc">
+          <desc id="car-desc">Line chart. Zomato: 0, +8.47, −107.96, +31.76. Paytm: 0, −12.95, −126.63, −80.47. Nykaa: 0, −3.20, −67.05, −106.24, at listing, 30 days, 1 year and 3 years.</desc>
+          <!-- scale: y = 20 + (60 − v) × 1.2 ; x = Listing 60, 30d 180, 1y 300, 3y 420 -->
+          <line class="grid" x1="48" y1="44" x2="425" y2="44"/>
+          <line class="zero" x1="48" y1="92" x2="425" y2="92"/>
+          <line class="grid" x1="48" y1="140" x2="425" y2="140"/>
+          <line class="grid" x1="48" y1="188" x2="425" y2="188"/>
+          <line class="grid" x1="48" y1="236" x2="425" y2="236"/>
+          <text x="42" y="48" text-anchor="end">+40</text>
+          <text x="42" y="96" text-anchor="end">0</text>
+          <text x="42" y="144" text-anchor="end">−40</text>
+          <text x="42" y="192" text-anchor="end">−80</text>
+          <text x="42" y="240" text-anchor="end">−120</text>
+          <text x="60" y="280" text-anchor="middle">Listing</text>
+          <text x="180" y="280" text-anchor="middle">30 days</text>
+          <text x="300" y="280" text-anchor="middle">1 year</text>
+          <text x="420" y="280" text-anchor="middle">3 years</text>
+
+          <polyline class="ln n" points="60,92 180,95.8 300,172.5 420,219.5"/>
+          <polyline class="ln p" points="60,92 180,107.5 300,244 420,188.6"/>
+          <polyline class="ln z" points="60,92 180,81.8 300,221.6 420,53.9"/>
+
+          <g><title>Nykaa · 30 days: −3.20%</title><circle class="dot n" cx="180" cy="95.8" r="4.5"/></g>
+          <g><title>Nykaa · 1 year: −67.05%</title><circle class="dot n" cx="300" cy="172.5" r="4.5"/></g>
+          <g><title>Nykaa · 3 years: −106.24%</title><circle class="dot n" cx="420" cy="219.5" r="4.5"/></g>
+          <g><title>Paytm · 30 days: −12.95%</title><circle class="dot p" cx="180" cy="107.5" r="4.5"/></g>
+          <g><title>Paytm · 1 year: −126.63%</title><circle class="dot p" cx="300" cy="244" r="4.5"/></g>
+          <g><title>Paytm · 3 years: −80.47%</title><circle class="dot p" cx="420" cy="188.6" r="4.5"/></g>
+          <g><title>Zomato · 30 days: +8.47%</title><circle class="dot z" cx="180" cy="81.8" r="4.5"/></g>
+          <g><title>Zomato · 1 year: −107.96%</title><circle class="dot z" cx="300" cy="221.6" r="4.5"/></g>
+          <g><title>Zomato · 3 years: +31.76%</title><circle class="dot z" cx="420" cy="53.9" r="4.5"/></g>
+          <g><title>All three · listing: 0%</title><circle class="dot z" cx="60" cy="92" r="4.5"/></g>
+
+          <text class="lbl" x="433" y="58">Zomato +31.8%</text>
+          <text class="lbl" x="433" y="192">Paytm −80.5%</text>
+          <text class="lbl" x="433" y="224">Nykaa −106.2%</text>
+        </svg>
+        <div class="legend"><span><i class="z"></i>Zomato</span><span><i class="p"></i>Paytm</span><span><i class="n"></i>Nykaa</span></div>
+      </figure>
+
+      <figure class="figure" style="margin:0">
+        <h3>Subscription ratio vs. first-day return</h3>
+        <p class="sub">First-day return in %. Bubble size shows issue size in ₹ crore.</p>
+        <svg viewBox="0 0 560 292" role="img" aria-labelledby="sub-desc">
+          <desc id="sub-desc">Scatter plot with regression line. Paytm 1.64 times subscribed, −27.40%. Zomato 38.25 times, +65.59%. Nykaa 81.78 times, +77.89%. Fitted line: −13.29 + 1.28 × subscription, R squared 0.80.</desc>
+          <!-- scale: x = 60 + v/90 × 480 ; y = 20 + (100 − v) × 1.642857 -->
+          <line class="grid" x1="60" y1="52.9" x2="540" y2="52.9"/>
+          <line class="grid" x1="60" y1="118.6" x2="540" y2="118.6"/>
+          <line class="zero" x1="60" y1="184.3" x2="540" y2="184.3"/>
+          <line class="grid" x1="60" y1="250" x2="540" y2="250"/>
+          <text x="52" y="56.9" text-anchor="end">+80</text>
+          <text x="52" y="122.6" text-anchor="end">+40</text>
+          <text x="52" y="188.3" text-anchor="end">0</text>
+          <text x="52" y="254" text-anchor="end">−40</text>
+          <text x="60" y="268" text-anchor="middle">0×</text>
+          <text x="166.7" y="268" text-anchor="middle">20×</text>
+          <text x="273.3" y="268" text-anchor="middle">40×</text>
+          <text x="380" y="268" text-anchor="middle">60×</text>
+          <text x="486.7" y="268" text-anchor="middle">80×</text>
+          <text x="300" y="288" text-anchor="middle">Overall subscription</text>
+
+          <line class="fit" x1="60" y1="206.1" x2="529.3" y2="20.8"/>
+          <text x="330" y="160">OLS fit · +1.28 pp per 1× · R² 0.80</text>
+
+          <g><title>Paytm: 1.64× subscribed, −27.40% first day, ₹18,300 cr issue</title><circle class="bub p" cx="68.7" cy="229.3" r="14"/></g>
+          <g><title>Zomato: 38.25× subscribed, +65.59% first day, ₹9,375 cr issue</title><circle class="bub z" cx="264" cy="76.5" r="10"/></g>
+          <g><title>Nykaa: 81.78× subscribed, +77.89% first day, ₹5,352 cr issue</title><circle class="bub n" cx="496.2" cy="56.3" r="8"/></g>
+
+          <text class="lbl" x="90" y="233">Paytm 1.6× · −27.4%</text>
+          <text class="lbl" x="248" y="72" text-anchor="end">Zomato 38.3× · +65.6%</text>
+          <text class="lbl" x="540" y="92" text-anchor="end">Nykaa 81.8× · +77.9%</text>
+        </svg>
+        <div class="legend"><span><i class="z"></i>Zomato</span><span><i class="p"></i>Paytm</span><span><i class="n"></i>Nykaa</span></div>
+      </figure>
+    </div>
+
+    <div class="scorecard">
+      <div class="table-scroll">
+        <table>
+          <caption>Offer prices, issue sizes and subscription ratios from the SEBI red herring prospectuses; prices from Yahoo Finance. CAR = cumulative abnormal return against the NIFTY 50.</caption>
+          <thead>
+            <tr>
+              <th>Company</th><th>IPO date</th><th class="r">Offer ₹</th><th class="r">Day-1 close ₹</th><th class="r">Day-1 return</th>
+              <th class="r">CAR 30d</th><th class="r">CAR 1y</th><th class="r">CAR 3y</th>
+              <th class="r">Subscr. overall</th><th class="r">QIB</th><th class="r">Retail</th><th class="r">Issue ₹ cr</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row"><i class="z"></i>Zomato</th><td class="num">23 Jul 2021</td><td class="r num">76</td><td class="r num">125.85</td><td class="r num">+65.59%</td><td class="r num">+8.47%</td><td class="r num neg">−107.96%</td><td class="r num">+31.76%</td><td class="r num">38.25×</td><td class="r num">51.79×</td><td class="r num">7.45×</td><td class="r num">9,375</td></tr>
+            <tr><th scope="row"><i class="p"></i>Paytm</th><td class="num">18 Nov 2021</td><td class="r num">2,150</td><td class="r num">1,560.80</td><td class="r num neg">−27.40%</td><td class="r num neg">−12.95%</td><td class="r num neg">−126.63%</td><td class="r num neg">−80.47%</td><td class="r num">1.64×</td><td class="r num">2.79×</td><td class="r num">1.66×</td><td class="r num">18,300</td></tr>
+            <tr><th scope="row"><i class="n"></i>Nykaa</th><td class="num">10 Nov 2021</td><td class="r num">1,125</td><td class="r num">2,001.25</td><td class="r num">+77.89%</td><td class="r num neg">−3.20%</td><td class="r num neg">−67.05%</td><td class="r num neg">−106.24%</td><td class="r num">81.78×</td><td class="r num">90.01×</td><td class="r num">12.24×</td><td class="r num">5,352</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="method">
+      <div>
+        <h3>How the analysis runs</h3>
+        <ol class="steps">
+          <li>Collect data<small>Prospectuses from SEBI; daily prices, NIFTY 50 and India VIX via the Yahoo Finance API</small></li>
+          <li>Clean and align<small>Merge stock and index on shared trading days; handle the Zomato → Eternal ticker change; retry failed downloads</small></li>
+          <li>Log returns<small><code>R = ln(Pₜ / Pₜ₋₁)</code></small></li>
+          <li>Abnormal returns<small><code>AR = R(stock) − R(NIFTY 50)</code></small></li>
+          <li>CAR windows<small>Sum of AR over 30, 252 and 756 trading days</small></li>
+          <li>Regression and output<small>OLS of day-1 return on subscription; results to CSV and charts</small></li>
+        </ol>
+      </div>
+      <div>
+        <h3>Core of the event study</h3>
+<pre class="log"><span class="c"># simplified from the thesis appendix</span>
+s, m = df["stock_price"], df["index_price"]
+df["ar"] = np.log(s / s.shift(1)) - np.log(m / m.shift(1))
+
+for label, days in {"30d": 30, "1y": 252, "3y": 756}.items():
+    car[label] = df["ar"].iloc[:days].sum() * 100</pre>
+        <div class="relevance">
+          <strong>Why this matters for finance transformation</strong>
+          The same approach I use in controlling: pull data automatically from the source, align and validate it, and produce results anyone can re-run instead of rebuilding a spreadsheet by hand.
+        </div>
+      </div>
+    </div>
+
+    <p class="caveat">Scope: three IPOs, so the results describe these companies rather than all IPOs. With n = 3 the regression is not statistically significant (p = 0.297), and the thesis treats it as exploratory evidence.</p>
   </section>
 
   <section id="transformation" aria-labelledby="tr-title">
@@ -448,7 +642,7 @@ def enterprise_value(fcf, wacc, g):
       <div class="skill-group"><h3>Controlling &amp; Reporting</h3><ul><li>Month-end reporting</li><li>Variance analysis</li><li>Budgeting &amp; forecasting</li><li>CAPEX &amp; asset accounting</li></ul></div>
       <div class="skill-group"><h3>ERP systems</h3><ul><li>SAP R/3</li><li>ZOHO ERP configuration</li><li>Cost centre accounting</li></ul></div>
       <div class="skill-group"><h3>BI &amp; Automation</h3><ul><li>Power BI</li><li>Excel VBA &amp; macros</li><li>Python</li><li>RStudio</li></ul></div>
-      <div class="skill-group"><h3>Corporate Finance</h3><ul><li>DCF &amp; multiples valuation</li><li>Comparable company analysis</li><li>Capital allocation</li><li>Equity &amp; market research</li></ul></div>
+      <div class="skill-group"><h3>Corporate Finance</h3><ul><li>Event studies &amp; abnormal returns</li><li>Regression analysis (OLS)</li><li>DCF &amp; multiples valuation</li><li>Capital allocation</li><li>Equity &amp; market research</li></ul></div>
     </div>
   </section>
 
@@ -460,7 +654,7 @@ def enterprise_value(fcf, wacc, g):
     <div class="facts">
       <div class="fact">
         <h3>Education</h3>
-        <div class="item">M.Sc. International Finance, HfWU Nürtingen<span>10/2022 – 03/2026 · Grade 2.0 · Quantitative corporate finance, financial engineering</span></div>
+        <div class="item">M.Sc. International Finance, HfWU Nürtingen<span>10/2022 – 03/2026 · Grade 2.0 · Thesis: IPO Performance Analysis of Indian Consumer Tech Unicorns</span></div>
         <div class="item">MBA, Central University of Tamil Nadu<span>07/2018 – 04/2020 · CGPA 8.09/10</span></div>
         <div class="item">B.Com, Amrita Vishwa Vidyapeetham<span>07/2013 – 05/2016 · CGPA 9.38/10, highest distinction</span></div>
       </div>
