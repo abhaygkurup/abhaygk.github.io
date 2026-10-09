@@ -1,0 +1,515 @@
+<title>Abhay Kurup Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Public+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a monthly reporting pack — plan/actual/variance tables, ledger rules, one green "booked" accent. */
+:root {
+  --bg: #f4f7f5;
+  --surface: #ffffff;
+  --fg: #12201b;
+  --muted: #56665f;
+  --rule: #d3ddd8;
+  --accent: #1d6a50;
+  --accent-soft: #e2efe9;
+  --neg: #a2412f;
+  --font-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Public Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --step--1: .8125rem;
+  --step-0: 1rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2rem, 4.6vw, 3.25rem);
+  --wrap: 72rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0d1412; --surface: #141d1a; --fg: #e4ece8; --muted: #93a49c;
+    --rule: #26342f; --accent: #5cc39b; --accent-soft: #173229; --neg: #e08a74;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0d1412; --surface: #141d1a; --fg: #e4ece8; --muted: #93a49c;
+  --rule: #26342f; --accent: #5cc39b; --accent-soft: #173229; --neg: #e08a74;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--fg);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.6;
+  padding-inline: 16px;
+}
+.wrap { max-width: var(--wrap); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.12; margin: 0; text-wrap: balance; }
+h2 { font-size: var(--step-2); font-stretch: 112%; font-weight: 700; letter-spacing: -.01em; }
+h3 { font-size: var(--step-1); font-weight: 650; font-stretch: 105%; }
+p { margin: 0; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+.num { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.eyebrow {
+  font-family: var(--font-mono); font-size: var(--step--1); letter-spacing: .08em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* Nav */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 10;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--rule); margin-inline: -16px; padding-inline: 16px;
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: .7rem; }
+.brand { font-family: var(--font-display); font-weight: 750; font-stretch: 115%; color: var(--fg); text-decoration: none; letter-spacing: -.01em; }
+.nav ul { list-style: none; display: flex; gap: 1.25rem; margin: 0; padding: 0; font-size: .9rem; }
+.nav ul a { color: var(--muted); text-decoration: none; }
+.nav ul a:hover { color: var(--fg); }
+@media (max-width: 760px) { .nav ul { display: none; } }
+
+section { padding-block: clamp(3rem, 7vw, 5rem); border-bottom: 1px solid var(--rule); }
+.section-head { display: grid; gap: .5rem; margin-bottom: 2rem; max-width: 46rem; }
+.section-head p { color: var(--muted); }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4rem); align-items: start; }
+@media (max-width: 880px) { .hero { grid-template-columns: 1fr; } }
+.hero-id { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; }
+.hero-id img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid var(--surface); box-shadow: 0 0 0 1px var(--rule); }
+.hero-id strong { display: block; font-family: var(--font-display); font-stretch: 110%; font-size: 1.05rem; }
+.hero h1 { font-size: var(--step-3); font-weight: 780; font-stretch: 118%; letter-spacing: -.02em; margin-top: .75rem; }
+.hero h1 em { font-style: normal; color: var(--accent); }
+.lede { margin-top: 1.25rem; font-size: 1.1rem; color: var(--muted); max-width: 36rem; }
+.actions { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 1.75rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: .5rem; padding: .7rem 1.1rem; border-radius: 6px;
+  font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--rule); color: var(--fg); background: var(--surface);
+  cursor: pointer; font-family: inherit;
+}
+.btn.primary { background: var(--accent); color: var(--bg); border-color: var(--accent); }
+.btn:hover { border-color: var(--accent); }
+
+/* Variance table (hero) */
+.pack { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.pack-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: .9rem 1.1rem; border-bottom: 2px solid var(--fg); }
+.pack-head h2 { font-size: 1rem; font-stretch: 105%; }
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: .9rem; }
+th, td { padding: .7rem 1.1rem; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; }
+th { font-family: var(--font-mono); font-weight: 500; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+td.r, th.r { text-align: right; white-space: nowrap; }
+tr:last-child td { border-bottom: 0; }
+.delta { color: var(--accent); font-weight: 500; }
+.pack-foot { padding: .7rem 1.1rem; font-size: .78rem; color: var(--muted); border-top: 1px solid var(--rule); background: var(--bg); }
+
+/* Case studies */
+.cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+@media (max-width: 880px) { .cases { grid-template-columns: 1fr; } }
+.case { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; display: flex; flex-direction: column; min-width: 0; }
+.case-top { padding: 1.25rem 1.25rem 0; display: grid; gap: .4rem; }
+.case dl { display: grid; grid-template-columns: 6.5rem minmax(0, 1fr); gap: .55rem 1rem; margin: 1rem 1.25rem 1.25rem; font-size: .93rem; }
+.case dt { font-family: var(--font-mono); font-size: .72rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); padding-top: .2rem; }
+.case dd { margin: 0; }
+.case dd.result { font-weight: 600; }
+@media (max-width: 460px) { .case dl { grid-template-columns: 1fr; gap: .15rem; } .case dd { margin-bottom: .5rem; } }
+.tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+.tag { font-family: var(--font-mono); font-size: .72rem; padding: .15rem .5rem; border-radius: 3px; background: var(--accent-soft); color: var(--fg); }
+.demo { margin-top: auto; border-top: 1px dashed var(--rule); padding: 1rem 1.25rem 1.25rem; background: var(--bg); border-radius: 0 0 8px 8px; }
+.demo-label { display: flex; justify-content: space-between; gap: .5rem; flex-wrap: wrap; font-size: .75rem; color: var(--muted); margin-bottom: .6rem; font-family: var(--font-mono); }
+pre.log { margin: 0; font-family: var(--font-mono); font-size: .78rem; line-height: 1.55; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: .75rem .9rem; overflow-x: auto; color: var(--fg); }
+pre.log .ok { color: var(--accent); }
+pre.log .c { color: var(--muted); }
+.mini table { font-size: .8rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.mini th, .mini td { padding: .45rem .7rem; }
+.pill { font-family: var(--font-mono); font-size: .7rem; padding: .1rem .45rem; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; }
+.pill.ok { color: var(--accent); }
+.pill.warn { color: var(--neg); }
+.chart svg { display: block; width: 100%; height: auto; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; }
+.chart text { font-family: var(--font-mono); font-size: 10px; fill: var(--muted); }
+.chart .bar { fill: var(--accent); }
+.chart .bar.alt { fill: var(--rule); }
+.chart .grid { stroke: var(--rule); stroke-width: 1; }
+
+/* Transformation lens */
+.lanes { display: grid; gap: 1.5rem; }
+.lane { display: grid; grid-template-columns: 9rem minmax(0, 1fr); gap: 1rem; align-items: start; }
+@media (max-width: 700px) { .lane { grid-template-columns: 1fr; } }
+.lane-name h3 { font-size: 1rem; }
+.lane-name p { font-size: .82rem; color: var(--muted); }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: .5rem; counter-reset: s; }
+@media (max-width: 960px) { .steps { grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); } }
+.steps li { counter-increment: s; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: .75rem .85rem; font-size: .88rem; display: grid; gap: .3rem; align-content: start; }
+.steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: .7rem; color: var(--muted); }
+.steps li small { color: var(--muted); font-size: .78rem; line-height: 1.4; }
+.lane.future .steps li { border-color: color-mix(in srgb, var(--accent) 45%, var(--rule)); }
+.lane.future .steps li small { color: var(--accent); }
+.lane.today .steps li small { color: var(--neg); }
+.principles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.25rem; margin-top: 2.25rem; padding-top: 1.75rem; border-top: 1px solid var(--rule); }
+@media (max-width: 760px) { .principles { grid-template-columns: 1fr; } }
+.principles h3 { font-size: 1rem; margin-bottom: .3rem; }
+.principles p { color: var(--muted); font-size: .93rem; }
+
+/* Experience */
+.timeline { display: grid; gap: 0; }
+.job { display: grid; grid-template-columns: 11rem minmax(0, 1fr); gap: 1.5rem; padding-block: 1.4rem; border-top: 1px solid var(--rule); }
+.job:first-child { border-top: 2px solid var(--fg); }
+@media (max-width: 700px) { .job { grid-template-columns: 1fr; gap: .4rem; } }
+.job .when { font-family: var(--font-mono); font-size: .82rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.job h3 { font-size: 1.05rem; }
+.job .org { color: var(--muted); font-size: .92rem; margin-top: .15rem; }
+.job ul { margin: .6rem 0 0; padding-left: 1.1rem; display: grid; gap: .3rem; max-width: 46rem; }
+
+/* Skills */
+.skills { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; }
+@media (max-width: 960px) { .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .skills { grid-template-columns: 1fr; } }
+.skill-group h3 { font-size: .95rem; padding-bottom: .5rem; border-bottom: 2px solid var(--fg); margin-bottom: .6rem; }
+.skill-group ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .35rem; font-size: .93rem; }
+
+.facts { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.5rem; }
+@media (max-width: 860px) { .facts { grid-template-columns: 1fr; } }
+.fact h3 { font-size: .95rem; padding-bottom: .5rem; border-bottom: 2px solid var(--fg); margin-bottom: .75rem; }
+.fact .item { padding-bottom: .75rem; margin-bottom: .75rem; border-bottom: 1px solid var(--rule); font-size: .93rem; }
+.fact .item:last-child { border-bottom: 0; }
+.fact .item span { display: block; color: var(--muted); font-size: .85rem; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 2rem; align-items: center; }
+@media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+.contact h2 { font-size: var(--step-3); font-stretch: 118%; font-weight: 780; letter-spacing: -.02em; }
+.contact-box { background: var(--surface); border: 1px solid var(--rule); border-radius: 8px; padding: 1.25rem; display: grid; gap: .9rem; }
+.row { display: flex; justify-content: space-between; align-items: center; gap: .75rem; flex-wrap: wrap; }
+.row .val { font-family: var(--font-mono); font-size: .9rem; word-break: break-all; }
+.copy { font-size: .8rem; padding: .35rem .7rem; }
+footer { padding-block: 2rem 3rem; font-size: .8rem; color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+</style>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Abhay G. Kurup</a>
+    <ul>
+      <li><a href="#cases">Case studies</a></li>
+      <li><a href="#transformation">Transformation</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main class="wrap" id="top">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div>
+      <div class="hero-id">
+        <img src="data:image/jpeg;base64,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" alt="Portrait of Abhay Gopinatha Kurup">
+        <div>
+          <strong>Abhay Gopinatha Kurup</strong>
+          <span class="eyebrow">M.Sc. International Finance · Reutlingen</span>
+        </div>
+      </div>
+      <p class="eyebrow">Accounting &amp; Controlling · Digital Transformation</p>
+      <h1 id="hero-title">I turn manual month-end work into <em>automated, reliable reporting.</em></h1>
+      <p class="lede">Two years in controlling and finance at cellcentric and Digital Zolutions, working with SAP R/3, Power BI, Excel VBA and Python. I look for the steps that eat a controller's week and rebuild them so they run in minutes.</p>
+      <div class="actions">
+        <a class="btn primary" href="#cases">See case studies</a>
+        <a class="btn" href="https://linkedin.com/in/abhaygk" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="#contact">Contact</a>
+      </div>
+    </div>
+
+    <div class="pack" aria-labelledby="pack-title">
+      <div class="pack-head">
+        <h2 id="pack-title">Impact report</h2>
+        <span class="eyebrow">Actual vs. baseline</span>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Line item</th><th class="r">Baseline</th><th class="r">Actual</th><th class="r">Δ</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Recurring financial analysis<br><span class="eyebrow">VBA automation</span></td><td class="r num">120 min</td><td class="r num">5 min</td><td class="r num delta">−96%</td></tr>
+            <tr><td>Fixed assets verified with R&amp;D<br><span class="eyebrow">CAPEX transparency</span></td><td class="r num">—</td><td class="r num">400+</td><td class="r num delta">verified</td></tr>
+            <tr><td>Forecasting accuracy<br><span class="eyebrow">Variance analysis</span></td><td class="r num">100</td><td class="r num">130</td><td class="r num delta">+30%</td></tr>
+            <tr><td>Cost tracking clarity<br><span class="eyebrow">ZOHO ERP setup</span></td><td class="r num">100</td><td class="r num">110</td><td class="r num delta">+10%</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="pack-foot">Indexed to baseline = 100 where the source metric is a relative improvement.</p>
+    </div>
+  </section>
+
+  <section id="cases" aria-labelledby="cases-title">
+    <div class="section-head">
+      <p class="eyebrow">Case studies</p>
+      <h2 id="cases-title">Four problems, how I solved them, and what changed</h2>
+      <p>Each demo below is rebuilt with synthetic sample data. No employer data is shown.</p>
+    </div>
+
+    <div class="cases">
+      <article class="case">
+        <div class="case-top">
+          <p class="eyebrow">cellcentric · Controlling &amp; Accounting</p>
+          <h3>Month-end analysis in five minutes</h3>
+          <div class="tags"><span class="tag">Excel VBA</span><span class="tag">SAP R/3</span><span class="tag">Data modelling</span></div>
+        </div>
+        <dl>
+          <dt>Problem</dt><dd>Recurring financial analysis took two hours of copying, cleaning and reformatting SAP exports every cycle.</dd>
+          <dt>Approach</dt><dd>Built VBA macros and a data model that import the raw export, apply mapping rules, reconcile totals and produce the finished report.</dd>
+          <dt>Result</dt><dd class="result">From 2 hours to 5 minutes per run, with a faster month-end reporting cycle.</dd>
+        </dl>
+        <div class="demo">
+          <div class="demo-label"><span>Demo · macro run log</span><span>sample data</span></div>
+<pre class="log"><span class="c">' MonthEnd_Report.xlsm › RunAll()</span>
+[09:00:01] Import SAP export (KSB1) … 4,812 rows
+[09:00:14] Map cost elements to report lines … done
+[09:00:39] Reconcile to GL totals … <span class="ok">Δ 0.00 EUR</span>
+[09:01:52] Build variance tables (Plan/Actual) … done
+[09:04:47] Export PDF + archive … <span class="ok">complete</span>
+<span class="c">Runtime 4 min 46 s · previously ~120 min</span></pre>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-top">
+          <p class="eyebrow">cellcentric · Business Controlling</p>
+          <h3>Standard travel expense reporting</h3>
+          <div class="tags"><span class="tag">Power BI</span><span class="tag">Report design</span></div>
+        </div>
+        <dl>
+          <dt>Problem</dt><dd>Travel expenses were reported in different formats by department, so totals were hard to compare.</dd>
+          <dt>Approach</dt><dd>Designed one standard Power BI template with shared measures, cost-centre filters and a plan-vs-actual view.</dd>
+          <dt>Result</dt><dd class="result">One consistent report that managers can filter themselves.</dd>
+        </dl>
+        <div class="demo chart">
+          <div class="demo-label"><span>Demo · travel cost by quarter (kEUR)</span><span>sample data</span></div>
+          <svg viewBox="0 0 320 150" role="img" aria-label="Sample bar chart of plan versus actual travel cost by quarter">
+            <line class="grid" x1="36" y1="20" x2="310" y2="20"/>
+            <line class="grid" x1="36" y1="55" x2="310" y2="55"/>
+            <line class="grid" x1="36" y1="90" x2="310" y2="90"/>
+            <line class="grid" x1="36" y1="125" x2="310" y2="125"/>
+            <text x="30" y="23" text-anchor="end">60</text>
+            <text x="30" y="58" text-anchor="end">40</text>
+            <text x="30" y="93" text-anchor="end">20</text>
+            <text x="30" y="128" text-anchor="end">0</text>
+            <!-- scale: 0 at y=125, 60 at y=20 → 1.75 px per kEUR -->
+            <rect class="bar alt" x="52" y="55" width="22" height="70"/><rect class="bar" x="76" y="62" width="22" height="63"/>
+            <rect class="bar alt" x="120" y="55" width="22" height="70"/><rect class="bar" x="144" y="41" width="22" height="84"/>
+            <rect class="bar alt" x="188" y="55" width="22" height="70"/><rect class="bar" x="212" y="69" width="22" height="56"/>
+            <rect class="bar alt" x="256" y="55" width="22" height="70"/><rect class="bar" x="280" y="48" width="22" height="77"/>
+            <text x="75" y="141" text-anchor="middle">Q1</text><text x="143" y="141" text-anchor="middle">Q2</text>
+            <text x="211" y="141" text-anchor="middle">Q3</text><text x="279" y="141" text-anchor="middle">Q4</text>
+            <rect class="bar alt" x="200" y="6" width="8" height="8"/><text x="212" y="13">Plan</text>
+            <rect class="bar" x="248" y="6" width="8" height="8"/><text x="260" y="13">Actual</text>
+          </svg>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-top">
+          <p class="eyebrow">cellcentric · Business Controlling</p>
+          <h3>CAPEX transparency for 400+ fixed assets</h3>
+          <div class="tags"><span class="tag">Asset accounting</span><span class="tag">SAP R/3</span><span class="tag">Stakeholders</span></div>
+        </div>
+        <dl>
+          <dt>Problem</dt><dd>Asset records and their actual use in R&amp;D projects had drifted apart, which blurred CAPEX allocation.</dd>
+          <dt>Approach</dt><dd>Worked directly with R&amp;D managers to verify each asset's status, location and cost-centre assignment.</dd>
+          <dt>Result</dt><dd class="result">400+ assets verified, giving a clean basis for CAPEX accounting and allocation.</dd>
+        </dl>
+        <div class="demo mini">
+          <div class="demo-label"><span>Demo · asset verification tracker</span><span>sample data</span></div>
+          <div class="table-scroll">
+            <table>
+              <thead><tr><th>Asset</th><th>Cost centre</th><th class="r">Book value</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td class="num">A-10234</td><td>R&amp;D Test Bench</td><td class="r num">18,400</td><td><span class="pill ok">verified</span></td></tr>
+                <tr><td class="num">A-10571</td><td>R&amp;D Prototyping</td><td class="r num">7,950</td><td><span class="pill warn">reassign CC</span></td></tr>
+                <tr><td class="num">A-11002</td><td>Lab Equipment</td><td class="r num">42,100</td><td><span class="pill ok">verified</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </article>
+
+      <article class="case">
+        <div class="case-top">
+          <p class="eyebrow">Master thesis · HfWU Nürtingen</p>
+          <h3>IPO valuation of Indian consumer-tech unicorns</h3>
+          <div class="tags"><span class="tag">Python</span><span class="tag">DCF</span><span class="tag">Multiples</span><span class="tag">Event study</span></div>
+        </div>
+        <dl>
+          <dt>Problem</dt><dd>Did post-IPO performance of Indian consumer-tech companies justify their listing valuations?</dd>
+          <dt>Approach</dt><dd>Built Python models for DCF valuation, comparable-company multiples and an event study against sector peers.</dd>
+          <dt>Result</dt><dd class="result">A reusable modelling pipeline for benchmarking valuations and forecasts.</dd>
+        </dl>
+        <div class="demo">
+          <div class="demo-label"><span>Demo · model excerpt</span><span>code on GitHub</span></div>
+<pre class="log"><span class="c"># dcf.py — enterprise value from free cash flows</span>
+def enterprise_value(fcf, wacc, g):
+    pv = sum(cf / (1 + wacc)**t
+             for t, cf in enumerate(fcf, 1))
+    tv = fcf[-1] * (1 + g) / (wacc - g)
+    return pv + tv / (1 + wacc)**len(fcf)</pre>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="transformation" aria-labelledby="tr-title">
+    <div class="section-head">
+      <p class="eyebrow">Transformation lens</p>
+      <h2 id="tr-title">How I would approach a month-end close transformation</h2>
+      <p>The pattern I have seen in controlling teams, and the target state I work towards. Steps run left to right.</p>
+    </div>
+
+    <div class="lanes">
+      <div class="lane today">
+        <div class="lane-name"><h3>Today</h3><p>Manual, spreadsheet-driven</p></div>
+        <ol class="steps">
+          <li>Export from SAP<small>Repeated manual downloads</small></li>
+          <li>Copy into Excel<small>Version chaos, broken links</small></li>
+          <li>Reconcile by hand<small>Errors found late</small></li>
+          <li>Format report<small>Hours of layout work</small></li>
+          <li>Email PDF<small>No drill-down, static</small></li>
+        </ol>
+      </div>
+      <div class="lane future">
+        <div class="lane-name"><h3>Target</h3><p>Automated, governed</p></div>
+        <ol class="steps">
+          <li>Scheduled ERP extract<small>SAP S/4HANA / R/3</small></li>
+          <li>Central data model<small>Power Query / Python</small></li>
+          <li>Validation rules<small>Reconciles automatically</small></li>
+          <li>Refreshing dashboard<small>Power BI, one source</small></li>
+          <li>Self-service analysis<small>Time for interpretation</small></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="principles">
+      <div><h3>Start with the process</h3><p>Map the current close step by step and measure where time goes before choosing a tool.</p></div>
+      <div><h3>Automate the repeatable</h3><p>Macros, scripts and data models take over recurring work, so controllers spend time on analysis.</p></div>
+      <div><h3>Build trust in the numbers</h3><p>Every automated report reconciles to the ledger, so finance and management can rely on it.</p></div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="exp-title">
+    <div class="section-head">
+      <p class="eyebrow">Experience</p>
+      <h2 id="exp-title">Where I have worked</h2>
+    </div>
+    <div class="timeline">
+      <div class="job">
+        <p class="when">04/2025 – 09/2025</p>
+        <div>
+          <h3>Working Student, Controlling &amp; Accounting</h3>
+          <p class="org">cellcentric GmbH &amp; Co. KG · Kirchheim/Teck-Nabern</p>
+          <ul>
+            <li>Built financial automation scripts and Excel VBA macros, cutting recurring analysis from two hours to five minutes.</li>
+            <li>Sped up month-end reporting through data modelling, capital cost tracking and optimised SAP R/3 processing.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <p class="when">10/2024 – 03/2025</p>
+        <div>
+          <h3>Intern, Business Controlling</h3>
+          <p class="org">cellcentric GmbH &amp; Co. KG · Kirchheim/Teck-Nabern</p>
+          <ul>
+            <li>Developed a standardised Power BI reporting template for travel expenses.</li>
+            <li>Verified 400+ fixed assets with R&amp;D managers to improve CAPEX accounting and allocation.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="job">
+        <p class="when">10/2023 – 09/2024</p>
+        <div>
+          <h3>Working Student, Finance</h3>
+          <p class="org">Digital Zolutions GmbH · Berlin</p>
+          <ul>
+            <li>Compiled project-tracking data and ran variance analysis for monthly budgeting, improving forecasting accuracy by 30%.</li>
+            <li>Contributed to a multi-module ZOHO ERP configuration, improving cost tracking clarity by 10%.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" aria-labelledby="skills-title">
+    <div class="section-head">
+      <p class="eyebrow">Skills</p>
+      <h2 id="skills-title">What I bring to a finance transformation team</h2>
+    </div>
+    <div class="skills">
+      <div class="skill-group"><h3>Controlling &amp; Reporting</h3><ul><li>Month-end reporting</li><li>Variance analysis</li><li>Budgeting &amp; forecasting</li><li>CAPEX &amp; asset accounting</li></ul></div>
+      <div class="skill-group"><h3>ERP systems</h3><ul><li>SAP R/3</li><li>ZOHO ERP configuration</li><li>Cost centre accounting</li></ul></div>
+      <div class="skill-group"><h3>BI &amp; Automation</h3><ul><li>Power BI</li><li>Excel VBA &amp; macros</li><li>Python</li><li>RStudio</li></ul></div>
+      <div class="skill-group"><h3>Corporate Finance</h3><ul><li>DCF &amp; multiples valuation</li><li>Comparable company analysis</li><li>Capital allocation</li><li>Equity &amp; market research</li></ul></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="edu-title">
+    <div class="section-head">
+      <p class="eyebrow">Background</p>
+      <h2 id="edu-title">Education, certificates and languages</h2>
+    </div>
+    <div class="facts">
+      <div class="fact">
+        <h3>Education</h3>
+        <div class="item">M.Sc. International Finance, HfWU Nürtingen<span>10/2022 – 03/2026 · Grade 2.0 · Quantitative corporate finance, financial engineering</span></div>
+        <div class="item">MBA, Central University of Tamil Nadu<span>07/2018 – 04/2020 · CGPA 8.09/10</span></div>
+        <div class="item">B.Com, Amrita Vishwa Vidyapeetham<span>07/2013 – 05/2016 · CGPA 9.38/10, highest distinction</span></div>
+      </div>
+      <div class="fact">
+        <h3>Certificates</h3>
+        <div class="item">Environmental, Social &amp; Governance<span>Bloomberg · April 2023</span></div>
+        <div class="item">Bloomberg Market Concepts<span>Bloomberg · November 2022</span></div>
+      </div>
+      <div class="fact">
+        <h3>Languages</h3>
+        <div class="item">English<span>C1</span></div>
+        <div class="item">German<span>A1/A2</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="contact-title">
+    <div>
+      <p class="eyebrow">Contact</p>
+      <h2 id="contact-title">Let's talk about your finance transformation.</h2>
+    </div>
+    <div class="contact-box">
+      <div class="row"><div><p class="eyebrow">Email</p><p class="val" id="email-val">abhaygopinath07@gmail.com</p></div><button class="btn copy" id="copy-email" type="button">Copy</button></div>
+      <div class="row"><div><p class="eyebrow">LinkedIn</p><a class="val" href="https://linkedin.com/in/abhaygk" target="_blank" rel="noopener">linkedin.com/in/abhaygk</a></div></div>
+      <div class="row"><div><p class="eyebrow">Location</p><p class="val">Reutlingen, Baden-Württemberg</p></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Abhay Gopinatha Kurup</span>
+    <span>Demos use synthetic sample data. No employer data is shown.</span>
+  </footer>
+</main>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var val = document.getElementById('email-val');
+  btn.addEventListener('click', function () {
+    var text = val.textContent.trim();
+    function selectFallback() {
+      var r = document.createRange(); r.selectNodeContents(val);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected';
+    }
+    try {
+      navigator.clipboard.writeText(text).then(function () { btn.textContent = 'Copied'; }, selectFallback);
+    } catch (e) { selectFallback(); }
+    setTimeout(function () { btn.textContent = 'Copy'; }, 2000);
+  });
+})();
+</script>
